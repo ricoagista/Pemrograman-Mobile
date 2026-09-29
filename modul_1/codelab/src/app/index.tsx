@@ -6,7 +6,7 @@ export default function Index() {
     <View style={styles.container}>
       <Ionicons name="information-circle" size={40} color="red" style={styles.iconCenter} />
       <Text style={styles.title}>Hello World</Text>
-      <TextInput placeholder="up gess.." style={styles.input} />
+      <TextInput placeholder="heyyo wasap nig..." style={styles.input} />
       <View style={styles.buttonContainer}>
         <Button title="Click Me" />
         <Ionicons name="hand-left" size={24} color="black" style={styles.iconHand} />
