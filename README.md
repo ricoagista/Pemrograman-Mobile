@@ -22,11 +22,11 @@ Pemrograman-Mobile/
 
 ## 📖 Daftar Modul
 
-| Modul | Topik | Materi |
-|-------|-------|--------|
-| [Modul 0](./modul_0/) | Setup Dasar | Environment setup, Node.js, Expo CLI, dan pengenalan React Native |
-| [Modul 1](./modul_1/) | Sintaks & UI Dasar | JSX, Core Components, Flexbox styling, dan UI layouting |
-| [Modul 2](./modul_2/) | State, Hooks, & Navigasi Page | useState, useEffect, React Navigation (Stack, Tab) |
+| Modul | Topik | Materi / File |
+|-------|-------|---------------|
+| [Modul 0](./modul_0/) | Setup Dasar | • `Modul 0 - Setup Dasar.pdf` |
+| [Modul 1](./modul_1/) | Sintaks & UI Dasar | • `Modul 1 - Sintaks & UI Dasar.pdf`<br>• [`codelab/`](./modul_1/codelab/) (Project Expo React Native) |
+| [Modul 2](./modul_2/) | State, Hooks, & Navigasi Page | • `Modul 2 - State, Hooks, & Navigasi Page.pdf` |
 | [Modul 3](./modul_3/) | - | - |
 | [Modul 4](./modul_4/) | - | - |
 | [Modul 5](./modul_5/) | - | - |
