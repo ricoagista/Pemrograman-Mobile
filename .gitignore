@@ -4,3 +4,6 @@ ResolveU/
 # File sistem
 desktop.ini
 Thumbs.db
+
+# Zip arsip (sudah di-extract ke folder)
+codelab.zip
