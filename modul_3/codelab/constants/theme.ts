@@ -8,6 +8,7 @@ export const colors = {
   secondary: "#32D74B", // Acento Secundario (Verde Lima)
   textPrimary: "#FFFFFF", // Texto Principal
   textSecondary: "#98989D", // Texto Secundario (Gris)
+  textOnPrimary: "#121212",
 };
 
 export const radius = {

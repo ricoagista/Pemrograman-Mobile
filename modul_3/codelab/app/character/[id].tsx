@@ -164,7 +164,11 @@ export default function CharacterDetailScreen() {
           onPress={toggleFavorite}
         >
           <Text
-            style={styles.favoriteButtonText}
+            style={
+              favorite
+                ? styles.favoriteButtonTextRemove
+                : styles.favoriteButtonText
+            }
           >
             {favorite
               ? "❤️ Remove Favorite"
@@ -307,6 +311,11 @@ const styles = StyleSheet.create({
   },
 
   favoriteButtonText: {
+    color: colors.textOnPrimary,
+    fontWeight: "700",
+  },
+
+  favoriteButtonTextRemove: {
     color: colors.textPrimary,
     fontWeight: "700",
   },

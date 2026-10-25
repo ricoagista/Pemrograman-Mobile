@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
 
   searchButtonText: {
-    color: colors.textPrimary,
+    color: colors.textOnPrimary,
     fontWeight: "700",
   },
 });

@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   },
 
   searchText: {
-    color: colors.textPrimary,
+    color: colors.textOnPrimary,
     fontWeight: "700",
   },
 
