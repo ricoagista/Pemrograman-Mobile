@@ -33,6 +33,8 @@ import {
   CharacterDetail,
 } from "../../types/character";
 
+import { colors } from "../../constants/theme";
+
 export default function CharacterDetailScreen() {
   const { id } =
     useLocalSearchParams<{
@@ -155,13 +157,14 @@ export default function CharacterDetailScreen() {
         </Text>
 
         <Pressable
-          style={styles.favoriteButton}
+          style={[
+            styles.favoriteButton,
+            favorite && styles.favoriteButtonRemove,
+          ]}
           onPress={toggleFavorite}
         >
           <Text
-            style={
-              styles.favoriteButtonText
-            }
+            style={styles.favoriteButtonText}
           >
             {favorite
               ? "❤️ Remove Favorite"
@@ -258,7 +261,7 @@ export default function CharacterDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: colors.background,
   },
 
   content: {
@@ -267,9 +270,11 @@ const styles = StyleSheet.create({
 
   hero: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     padding: 25,
-    borderRadius: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
 
   avatar: {
@@ -277,51 +282,59 @@ const styles = StyleSheet.create({
   },
 
   name: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "800",
     marginTop: 10,
+    color: colors.textPrimary,
   },
 
   anime: {
-    color: "#6366f1",
+    color: colors.primary,
     fontWeight: "700",
     marginTop: 5,
   },
 
   favoriteButton: {
     marginTop: 20,
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 12,
+    borderRadius: 16,
+  },
+
+  favoriteButtonRemove: {
+    backgroundColor: colors.alert,
   },
 
   favoriteButtonText: {
-    color: "#fff",
+    color: colors.textPrimary,
     fontWeight: "700",
   },
 
   section: {
-    backgroundColor: "#fff",
-    marginTop: 15,
-    padding: 18,
+    backgroundColor: colors.surface,
+    marginTop: 20,
+    padding: 20,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
 
   sectionTitle: {
     fontSize: 18,
     fontWeight: "800",
     marginBottom: 12,
+    color: colors.textPrimary,
   },
 
   description: {
     lineHeight: 22,
-    color: "#475569",
+    color: colors.textSecondary,
   },
 
   info: {
     marginBottom: 7,
-    color: "#475569",
+    color: colors.textSecondary,
   },
 
   stats: {
@@ -330,15 +343,18 @@ const styles = StyleSheet.create({
   },
 
   animeCard: {
-    padding: 15,
-    backgroundColor: "#f1f5f9",
-    borderRadius: 12,
+    padding: 20,
+    backgroundColor: colors.surface,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
     marginBottom: 10,
   },
 
   animeTitle: {
     fontWeight: "800",
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 6,
+    color: colors.textPrimary,
   },
 });

@@ -4,6 +4,8 @@ import {
   View,
 } from "react-native";
 
+import { colors } from "../constants/theme";
+
 interface StatCardProps {
   title: string;
   value: string | number;
@@ -29,22 +31,24 @@ export default function StatCard({
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    padding: 15,
+    padding: 20,
     margin: 5,
-    borderRadius: 12,
-    backgroundColor: "#eef2ff",
+    borderRadius: 16,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
     alignItems: "center",
   },
 
   value: {
-    fontSize: 20,
+    fontSize: 32,
     fontWeight: "800",
-    color: "#4f46e5",
+    color: colors.primary,
   },
 
   title: {
     marginTop: 5,
-    color: "#666",
+    color: colors.textSecondary,
     fontSize: 12,
   },
 });

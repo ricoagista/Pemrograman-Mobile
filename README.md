@@ -27,7 +27,7 @@ Pemrograman-Mobile/
 | [Modul 0](./modul_0/) | Setup Dasar | • `Modul 0 - Setup Dasar.pdf` |
 | [Modul 1](./modul_1/) | Sintaks & UI Dasar | • `Modul 1 - Sintaks & UI Dasar.pdf`<br>• [`codelab/`](./modul_1/codelab/) (Project Expo React Native) |
 | [Modul 2](./modul_2/) | State, Hooks, & Navigasi Page | • `Modul 2 - State, Hooks, & Navigasi Page.pdf`<br>• [`codelab-1/`](./modul_2/codelab-1/) (Project Expo React Native)<br>• [`codelab-2/`](./modul_2/codelab-2/) (Project Expo React Native) |
-| [Modul 3](./modul_3/) | Pemrograman Asynchronous & API Call | • `Modul 3 - Pemrograman Asynchronous & API Call.pdf` |
+| [Modul 3](./modul_3/) | Pemrograman Asynchronous & API Call | • `Modul 3 - Pemrograman Asynchronous & API Call.pdf`<br>• [`codelab/`](./modul_3/codelab/) (Project Expo React Native + `DESIGN.md`, `DESIGN_REPORT.md`) |
 | [Modul 4](./modul_4/) | - | - |
 | [Modul 5](./modul_5/) | - | - |
 | [Modul 6](./modul_6/) | - | - |

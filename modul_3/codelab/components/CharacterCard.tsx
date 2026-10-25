@@ -7,6 +7,8 @@ import {
 
 import { Character } from "../types/character";
 
+import { colors } from "../constants/theme";
+
 interface CharacterCardProps {
   character: Character;
   onPress: () => void;
@@ -53,7 +55,7 @@ export default function CharacterCard({
             onFavorite();
           }}
         >
-          <Text style={styles.favoriteText}>
+          <Text style={[styles.favoriteText, favorite && styles.favoriteFilled]}>
             {favorite ? "❤️" : "🤍"}
           </Text>
         </Pressable>
@@ -65,25 +67,19 @@ export default function CharacterCard({
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: "#fff",
-    padding: 16,
+    backgroundColor: colors.surface,
+    padding: 20,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
     marginBottom: 12,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
   },
 
   avatar: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#eef2ff",
+    backgroundColor: colors.surface,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -100,17 +96,18 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 17,
     fontWeight: "700",
+    color: colors.textPrimary,
   },
 
   anime: {
     marginTop: 2,
-    color: "#6366f1",
+    color: colors.primary,
     fontWeight: "600",
   },
 
   description: {
     marginTop: 5,
-    color: "#666",
+    color: colors.textSecondary,
     fontSize: 12,
   },
 
@@ -120,5 +117,10 @@ const styles = StyleSheet.create({
 
   favoriteText: {
     fontSize: 22,
+    color: colors.textSecondary,
+  },
+
+  favoriteFilled: {
+    color: colors.alert,
   },
 });

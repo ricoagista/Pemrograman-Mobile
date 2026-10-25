@@ -30,6 +30,8 @@ import {
 
 import { Character } from "../types/character";
 
+import { colors } from "../constants/theme";
+
 export default function SearchScreen() {
   const [keyword, setKeyword] =
     useState("");
@@ -132,15 +134,14 @@ export default function SearchScreen() {
           placeholder="Gon, Naruto, Luffy..."
           style={styles.input}
           onSubmitEditing={handleSearch}
+          placeholderTextColor={colors.textSecondary}
         />
 
         <Pressable
           style={styles.searchButton}
           onPress={handleSearch}
         >
-          <Text style={styles.searchText}>
-            Search
-          </Text>
+          <Text style={styles.searchText}>Search</Text>
         </Pressable>
       </View>
 
@@ -156,13 +157,9 @@ export default function SearchScreen() {
         !error &&
         characters.length === 0 && (
           <View style={styles.empty}>
-            <Text style={styles.emptyEmoji}>
-              🔎
-            </Text>
+            <Text style={styles.emptyEmoji}>🔎</Text>
 
-            <Text>
-              Search for an anime character
-            </Text>
+            <Text style={styles.emptyText}>Search for an anime character</Text>
           </View>
         )}
 
@@ -199,14 +196,15 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: colors.background,
     padding: 16,
   },
 
   title: {
     fontSize: 24,
-    fontWeight: "800",
+    fontWeight: "700",
     marginBottom: 15,
+    color: colors.textPrimary,
   },
 
   searchContainer: {
@@ -216,23 +214,24 @@ const styles = StyleSheet.create({
 
   input: {
     flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 12,
+    backgroundColor: colors.surface,
+    borderRadius: 16,
     paddingHorizontal: 15,
     borderWidth: 1,
-    borderColor: "#e2e8f0",
+    borderColor: colors.border,
+    color: colors.textPrimary,
   },
 
   searchButton: {
     marginLeft: 8,
-    backgroundColor: "#6366f1",
-    borderRadius: 12,
+    backgroundColor: colors.primary,
+    borderRadius: 16,
     paddingHorizontal: 18,
     justifyContent: "center",
   },
 
   searchText: {
-    color: "#fff",
+    color: colors.textPrimary,
     fontWeight: "700",
   },
 
@@ -248,5 +247,9 @@ const styles = StyleSheet.create({
   emptyEmoji: {
     fontSize: 50,
     marginBottom: 10,
+  },
+
+  emptyText: {
+    color: colors.textSecondary,
   },
 });

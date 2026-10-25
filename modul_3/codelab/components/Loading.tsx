@@ -5,6 +5,8 @@ Text,
 View,
 } from "react-native";
 
+import { colors } from "../constants/theme";
+
 interface LoadingProps {
 message?: string;
 }
@@ -16,7 +18,7 @@ return (
     <View style={styles.container}>
     <ActivityIndicator
         size="large"
-        color="#6366f1"
+        color={colors.primary}
     />
 
     <Text style={styles.text}>
@@ -35,6 +37,6 @@ container: {
 
 text: {
     marginTop: 10,
-    color: "#555",
+    color: colors.textSecondary,
 },
 });

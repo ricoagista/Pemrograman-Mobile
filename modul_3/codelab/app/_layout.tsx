@@ -2,9 +2,22 @@ import {
   Stack,
 } from "expo-router";
 
+import { colors } from "../constants/theme";
+
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.surface,
+        },
+        headerTintColor: colors.textPrimary,
+        headerTitleStyle: {
+          fontWeight: "700",
+          fontSize: 24,
+        },
+      }}
+    >
       <Stack.Screen
         name="index"
         options={{

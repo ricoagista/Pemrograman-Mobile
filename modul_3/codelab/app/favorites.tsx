@@ -27,6 +27,8 @@ import {
 
 import { Character } from "../types/character";
 
+import { colors } from "../constants/theme";
+
 export default function FavoritesScreen() {
   const [favorites, setFavorites] =
     useState<Character[]>([]);
@@ -180,7 +182,7 @@ export default function FavoritesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8fafc",
+    backgroundColor: colors.background,
     padding: 16,
   },
 
@@ -189,27 +191,33 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 15,
+    backgroundColor: colors.surface,
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
 
   title: {
-    fontSize: 25,
-    fontWeight: "800",
+    fontSize: 24,
+    fontWeight: "700",
+    color: colors.textPrimary,
   },
 
   count: {
-    color: "#64748b",
+    color: colors.textSecondary,
     marginTop: 3,
   },
 
   clearButton: {
     paddingVertical: 8,
     paddingHorizontal: 14,
-    backgroundColor: "#fee2e2",
-    borderRadius: 10,
+    backgroundColor: colors.alert,
+    borderRadius: 16,
   },
 
   clearButtonText: {
-    color: "#dc2626",
+    color: colors.textPrimary,
     fontWeight: "700",
   },
 
@@ -221,6 +229,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: colors.surface,
+    padding: 20,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
+    margin: 20,
   },
 
   emptyEmoji: {
@@ -231,23 +245,24 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "800",
     marginTop: 15,
+    color: colors.textPrimary,
   },
 
   emptyText: {
-    color: "#64748b",
+    color: colors.textSecondary,
     marginTop: 5,
   },
 
   searchButton: {
     marginTop: 20,
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.primary,
     paddingVertical: 13,
     paddingHorizontal: 20,
-    borderRadius: 12,
+    borderRadius: 16,
   },
 
   searchButtonText: {
-    color: "#fff",
+    color: colors.textPrimary,
     fontWeight: "700",
   },
 });
