@@ -28,7 +28,7 @@ Pemrograman-Mobile/
 | [Modul 1](./modul_1/) | Sintaks & UI Dasar | • `Modul 1 - Sintaks & UI Dasar.pdf`<br>• [`codelab/`](./modul_1/codelab/) (Project Expo React Native) |
 | [Modul 2](./modul_2/) | State, Hooks, & Navigasi Page | • `Modul 2 - State, Hooks, & Navigasi Page.pdf`<br>• [`codelab-1/`](./modul_2/codelab-1/) (Project Expo React Native)<br>• [`codelab-2/`](./modul_2/codelab-2/) (Project Expo React Native) |
 | [Modul 3](./modul_3/) | Pemrograman Asynchronous & API Call | • `Modul 3 - Pemrograman Asynchronous & API Call.pdf`<br>• [`codelab/`](./modul_3/codelab/) (Project Expo React Native) |
-| [Modul 4](./modul_4/) | Database & Autentikasi | • `Modul 4 - Database & Autentikasi.pdf` |
+| [Modul 4](./modul_4/) | Database & Autentikasi | • `Modul 4 - Database & Autentikasi.pdf`<br>• [`Codelab/`](./modul_4/Codelab/) (Project Expo React Native — Supabase Auth, SecureVault, schema.sql) |
 | [Modul 5](./modul_5/) | Device Access | • `Modul 5 - Device Access.pdf` |
 | [Modul 6](./modul_6/) | Push Notification | • `Modul 6 - Push Notification.pdf` |
 
