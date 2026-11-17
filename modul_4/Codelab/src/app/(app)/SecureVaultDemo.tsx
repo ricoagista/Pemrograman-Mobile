@@ -1,9 +1,10 @@
 // 1.1 IMPORT SECTION
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform, ScrollView } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function SecureVaultDemo() {
+function SecureVaultDemo() {
   // 1.2 STATE DECLARATION
   const [tokenInput, setTokenInput] = useState('');
   const [storedToken, setStoredToken] = useState<string | null>(null);
@@ -248,5 +249,29 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
+  },
+});
+
+// 1.8 ROUTE WRAPPER (Expo Router)
+// Pengganti app/(app)/vault.tsx agar isi komponen SecureVaultDemo tidak berubah.
+export default function SecureVaultDemoScreen() {
+  return (
+    <SafeAreaView style={routeStyles.safeArea}>
+      <ScrollView contentContainerStyle={routeStyles.scrollContent}>
+        <SecureVaultDemo />
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const routeStyles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  scrollContent: {
+    padding: 20,
+    justifyContent: 'center',
+    flexGrow: 1,
   },
 });

@@ -1,22 +1,22 @@
 // 1.1 IMPORT SECTION
-import React, { useEffect, useState, useCallback } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { useCallback, useEffect, useState } from 'react';
 import {
-  View,
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  Keyboard,
+  RefreshControl,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Alert,
-  ActivityIndicator,
-  RefreshControl,
-  Keyboard,
-  Platform,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/lib/supabase';
 
 // 1.2 INTERFACE DEFINITION
 interface Mission {
@@ -30,6 +30,7 @@ interface Mission {
 export default function TacticalHQScreen() {
   // 1.3 COMPONENT STATE
   const { user, signOut } = useAuth();
+  const router = useRouter();
   const [missions, setMissions] = useState<Mission[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -201,9 +202,17 @@ export default function TacticalHQScreen() {
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.signOutButton} onPress={signOut} activeOpacity={0.8}>
-            <Text style={styles.signOutButtonText}>Sign Out</Text>
-          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            <TouchableOpacity style={styles.signOutButton} onPress={() => router.push('/health')} activeOpacity={0.8}>
+              <Text style={styles.signOutButtonText}>Health</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.signOutButton} onPress={() => router.push('/SecureVaultDemo')} activeOpacity={0.8}>
+              <Text style={styles.signOutButtonText}>Vault</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.signOutButton} onPress={signOut} activeOpacity={0.8}>
+              <Text style={styles.signOutButtonText}>Sign Out</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* DISPATCH NEW MISSION CARD */}

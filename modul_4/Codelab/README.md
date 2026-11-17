@@ -114,17 +114,38 @@ npx expo start --web
 
 ## 6. Peta File & Struktur Proyek
 
+Struktur mengikuti acuan aslab. Semua kode aplikasi berada di dalam `src/`, dan alias `@/*` pada `tsconfig.json` mengarah ke `./src/*`.
+
+```text
+.env                              # kredensial Supabase (root, tidak di-commit)
+src/
+  app/
+    (app)/
+      index.tsx                   # code5 / Codelab 5 (versi aslab + 4 blank terisi)
+      health.tsx                  # code7 / Codelab 2
+      SecureVaultDemo.tsx         # code6 / Codelab 1 (rute langsung)
+    (auth)/
+      login.tsx                   # code3 / Codelab 3
+    _layout.tsx                   # code8 / Codelab 4
+    explore.tsx                   # bawaan template Expo
+    +html.tsx                     # bawaan template Expo (web)
+    +not-found.tsx                # bawaan template Expo
+  context/AuthContext.tsx         # code2 / Codelab 4
+  lib/supabase.ts                 # code1 / Codelab 2
+supabase/schema.sql               # DDL Codelab 5
+```
+
 | File | Codelab Terkait | Fungsi & Deskripsi |
 |---|---|---|
-| `asset/SecureVaultDemo.tsx` | Codelab 1 | Komponen antarmuka Hardware Vault. Mendemonstrasikan operasi enkripsi simpan (`setItemAsync`), baca (`getItemAsync`), dan hapus (`deleteItemAsync`) token menggunakan `expo-secure-store` (dengan fallback `localStorage` di web). |
-| `lib/supabase.ts` | Codelab 2 | Inisialisasi singleton client Supabase dengan adapter storage `expo-secure-store`. Berisi juga fungsi live health check `testCloudBridge()`. |
-| `app/(app)/cloud-health.tsx` | Codelab 2 | Halaman antarmuka untuk mengecek konektivitas Cloud Bridge ke instance PostgreSQL Supabase. Menggantikan file `app/index.tsx` di panduan awal agar tidak bentrok rute dengan `app/(app)/index.tsx`. |
-| `app/(auth)/login.tsx` | Codelab 3 | Layar autentikasi hero/operatif. Menangani pendaftaran akun baru via `supabase.auth.signUp` beserta user metadata (`callsign`, `role`) serta proses login via `supabase.auth.signInWithPassword`. |
-| `context/AuthContext.tsx` | Codelab 4 | Context Provider autentikasi global. Mengatur rehidrasi sesi saat aplikasi dibuka via `supabase.auth.getSession` dan mendengarkan event auth secara real-time via `supabase.auth.onAuthStateChange`. |
-| `app/_layout.tsx` | Codelab 4 | Root Navigation & Route Guard. Membungkus aplikasi dengan `AuthProvider`, mengecek apakah sesi ada melalui `useSegments()`, serta mengalihkan rute secara otomatis antara grup `(auth)` dan `(app)`. |
-| `app/(app)/vault.tsx` | Codelab 1 (Pendukung) | Rute halaman tipis yang merender komponen `SecureVaultDemo` di dalam `SafeAreaView` agar Codelab 1 dapat diuji langsung dalam navigasi. |
+| `src/app/(app)/SecureVaultDemo.tsx` | Codelab 1 | Rute langsung Hardware Vault. Mendemonstrasikan operasi enkripsi simpan (`setItemAsync`), baca (`getItemAsync`), dan hapus (`deleteItemAsync`) token menggunakan `expo-secure-store` (dengan fallback `localStorage` di web). Isi komponen template tidak diubah; di bagian bawah file hanya ditambahkan wrapper `SafeAreaView` + `ScrollView` kecil sebagai pengganti file `vault.tsx` yang dihapus. |
+| `src/lib/supabase.ts` | Codelab 2 | Inisialisasi singleton client Supabase dengan adapter storage `expo-secure-store`. Berisi juga fungsi live health check `testCloudBridge()`. |
+| `src/app/(app)/health.tsx` | Codelab 2 | Halaman antarmuka untuk mengecek konektivitas Cloud Bridge ke instance PostgreSQL Supabase. Sebelumnya bernama `cloud-health.tsx`; namanya diubah agar sesuai acuan aslab. |
+| `src/app/(auth)/login.tsx` | Codelab 3 | Layar autentikasi hero/operatif. Menangani pendaftaran akun baru via `supabase.auth.signUp` beserta user metadata (`callsign`, `role`) serta proses login via `supabase.auth.signInWithPassword`. |
+| `src/context/AuthContext.tsx` | Codelab 4 | Context Provider autentikasi global. Mengatur rehidrasi sesi saat aplikasi dibuka via `supabase.auth.getSession` dan mendengarkan event auth secara real-time via `supabase.auth.onAuthStateChange`. |
+| `src/app/_layout.tsx` | Codelab 4 | Root Navigation & Route Guard. Membungkus aplikasi dengan `AuthProvider`, mengecek apakah sesi ada melalui `useSegments()`, serta mengalihkan rute secara otomatis antara grup `(auth)` dan `(app)`. |
+| `src/app/(app)/index.tsx` | Codelab 5 | Dashboard Tactical Command HQ. Mengimplementasikan operasi CRUD data misi (`select`, `insert`, `update`, `delete`) pada tabel `missions` dengan optimistic UI updates. Header menyediakan tombol **Health** dan **Vault** untuk membuka Codelab 2 dan Codelab 1. |
+| `src/app/explore.tsx` | Template | Halaman contoh bawaan template Expo, tidak dipakai oleh alur codelab. |
 | `supabase/schema.sql` | Codelab 5 | Skrip DDL database PostgreSQL: pembuatan tabel `missions`, aktivasi RLS, dan 4 security policies berbasis `auth.uid()`. |
-| `app/(app)/index.tsx` | Codelab 5 | Dashboard Tactical Command HQ. Mengimplementasikan operasi CRUD data misi (`select`, `insert`, `update`, `delete`) pada tabel `missions` dengan optimistic UI updates. |
 
 ---
 
@@ -133,7 +154,8 @@ npx expo start --web
 ### Persiapan
 - `.env` sudah terisi, **Confirm email** sudah dimatikan, `supabase/schema.sql` sudah dijalankan.
 - Jalankan `npx expo start -c --go` (atau tekan `w` untuk web). Gunakan `-c` agar `.env` terbaca ulang.
-- Catatan: `/vault` dan `/cloud-health` berada di grup `(app)`, jadi harus login dulu. Itu perilaku route guard yang benar.
+- Catatan: halaman Vault dan Health berada di grup `(app)`, jadi harus login dulu. Itu perilaku route guard yang benar.
+- Codelab 1 dan Codelab 2 diakses lewat tombol **Vault** dan **Health** di header halaman HQ. Tidak ada lagi rute `/vault` maupun `/cloud-health`, dan tidak perlu deep link.
 
 ### Urutan pengujian
 
@@ -152,13 +174,12 @@ npx expo start --web
    - Refresh browser (F5) atau reload di Expo Go. **Hasil yang diharapkan:** tetap di HQ.
    - Ketuk Sign Out. **Hasil yang diharapkan:** kembali ke login. Buka URL HQ secara manual, harus terpental ke login.
 
-4. **Codelab 1 (Secure Vault):** login dulu, lalu buka `/vault`.
-   - Web: ketik `/vault` di address bar.
-   - Expo Go: deep link `exp://<IP-KAMU>:8081/--/vault` (IP sama dengan yang tampil di terminal Expo).
+4. **Codelab 1 (Secure Vault):** login dulu, lalu ketuk tombol **Vault** di header halaman HQ (rute `/SecureVaultDemo`).
+   - Tidak perlu mengetik URL atau deep link. Tombol ini hanya muncul setelah login karena berada di grup `(app)`.
    - Save Token -> pesan sukses dan input kosong. Load Token -> nilai tampil di "VAULT VALUE". Wipe Token lalu Load Token -> "No token found".
    - Catatan: di web memakai `localStorage` (badge menampilkan itu). Untuk membuktikan SecureStore asli, uji di Expo Go.
 
-5. **Codelab 2 (Cloud Bridge):** buka `/cloud-health`.
+5. **Codelab 2 (Cloud Bridge):** dari halaman HQ, ketuk tombol **Health** (rute `/health`).
    - **Hasil yang diharapkan:** URL Supabase tampil di TARGET URL dan pesan "Connection to PostgreSQL Supabase established successfully!".
    - Cek console Metro/browser: log `Cloud Bridge: Connection to Supabase established!` hanya muncul jika tidak ada error dari Supabase.
    - Catatan: layar ini bisa menampilkan sukses meski query gagal, karena `testCloudBridge` mengembalikan `true` selama tidak ada exception. Jadikan console sebagai indikator yang lebih jujur.
@@ -204,7 +225,7 @@ npx expo start --web
 | "Failed to fetch" atau URL kosong | `.env` salah isi atau belum restart dengan `-c` |
 | Alert "Database Setup Required" | `schema.sql` belum dijalankan |
 | Daftar berhasil tapi tidak bisa login | Confirm email masih menyala |
-| `/vault` atau `/cloud-health` memantul ke login | Belum login (route guard bekerja normal) |
+| Tombol Vault atau Health memantul ke login | Belum login (route guard bekerja normal) |
 
 ---
 
@@ -213,15 +234,15 @@ npx expo start --web
 Berikut adalah catatan teknis mengenai karakteristik implementasi template resmi modul tanpa mengubah kode bawaan:
 
 1. **`testCloudBridge` Selalu Mengembalikan `true`**:
-   Fungsi `testCloudBridge()` di `lib/supabase.ts` dibungkus dalam blok `try...catch`. SDK Supabase mengembalikan error query (seperti tabel belum dibuat atau RLS ditolak) sebagai atribut properti `{ error }` dari respons objek, bukan melemparkan exception JavaScript. Oleh karena itu, selama jaringan tidak mengalami kegagalan koneksi total (exception), blok `try` tetap mengeksekusi `return true;`.
+   Fungsi `testCloudBridge()` di `src/lib/supabase.ts` dibungkus dalam blok `try...catch`. SDK Supabase mengembalikan error query (seperti tabel belum dibuat atau RLS ditolak) sebagai atribut properti `{ error }` dari respons objek, bukan melemparkan exception JavaScript. Oleh karena itu, selama jaringan tidak mengalami kegagalan koneksi total (exception), blok `try` tetap mengeksekusi `return true;`.
 2. **Sanitasi `.trim()` pada Password**:
-   Pada `app/(auth)/login.tsx`, input password dibersihkan menggunakan metode `.trim()`. Karakter spasi di awal atau akhir password akan dihilangkan sebelum dikirimkan ke `supabase.auth`.
+   Pada `src/app/(auth)/login.tsx`, input password dibersihkan menggunakan metode `.trim()`. Karakter spasi di awal atau akhir password akan dihilangkan sebelum dikirimkan ke `supabase.auth`.
 3. **signUp Langsung Membuat Sesi**:
-   Karena fitur *Confirm email* dinonaktifkan di dashboard Supabase, panggilan `supabase.auth.signUp()` langsung mengembalikan token sesi aktif. Listener `onAuthStateChange` dan route guard di `app/_layout.tsx` akan mendeteksi sesi ini dan langsung mengarahkan pengguna ke halaman utama.
+   Karena fitur *Confirm email* dinonaktifkan di dashboard Supabase, panggilan `supabase.auth.signUp()` langsung mengembalikan token sesi aktif. Listener `onAuthStateChange` dan route guard di `src/app/_layout.tsx` akan mendeteksi sesi ini dan langsung mengarahkan pengguna ke halaman utama.
 4. **Respon UPDATE / DELETE Terhadap Kebijakan RLS**:
    Dalam protokol PostgreSQL / PostgREST Supabase, jika operasi `UPDATE` atau `DELETE` ditolak oleh evaluasi policy RLS (`auth.uid() = user_id`), database tidak mengembalikan pesan error, melainkan mengembalikan array hasil kosong (`0 rows affected`). Karena template menggunakan Optimistic UI (state antarmuka lokal diubah terlebih dahulu sebelum respons server), tindakan tersebut bisa tampak berhasil di layar lokal pengguna meskipun di database tidak ada baris yang terubah.
 5. **SecureStore Fallback di Web**:
-   Pustaka native `expo-secure-store` hanya beroperasi pada hardware Android KeyStore dan iOS Keychain. Saat aplikasi dijalankan di lingkungan web browser (`Platform.OS === 'web'`), `SecureVaultDemo.tsx` secara otomatis menggunakan fallback browser `localStorage`.
+   Pustaka native `expo-secure-store` hanya beroperasi pada hardware Android KeyStore dan iOS Keychain. Saat aplikasi dijalankan di lingkungan web browser (`Platform.OS === 'web'`), `src/app/(app)/SecureVaultDemo.tsx` secara otomatis menggunakan fallback browser `localStorage`.
 
 ---
 
